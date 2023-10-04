@@ -5,6 +5,16 @@ function criaCalculadora() {
         
         iniciar() {
             this.cliqueBotoes();
+            this.pressionaEnter();
+        },
+
+        pressionaEnter() {
+            document.addEventListener("keyup", function(e) {
+                if(e.keyCode === 13){
+                    this.deletarUm();
+                    this.realizaConta();
+                }
+            }.bind(this));
         },
 
         btnParaDisplay(valor) {
@@ -17,6 +27,7 @@ function criaCalculadora() {
 
         realizaConta() {
             let conta = this.display.value;
+            console.log(conta)
             try{
                 conta = eval(conta);
 
@@ -24,7 +35,7 @@ function criaCalculadora() {
                     alert("Conta inválida");
                     return;
                 }
-
+                
                 this.display.value = conta;
             }
             catch(e) {
@@ -36,7 +47,7 @@ function criaCalculadora() {
             
             document.addEventListener("click", function(e) {
 
-                const elemento = e.target;
+            const elemento = e.target;
 
               if(elemento.classList.contains("btn-num")){
                     const valor = elemento.innerText;
