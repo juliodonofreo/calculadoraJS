@@ -1,7 +1,7 @@
 function criaCalculadora() {
     return {
         display: document.querySelector(".display"),
-
+        btnCelar: document.querySelector(".btn-clear"),
         
         
         
@@ -15,6 +15,10 @@ function criaCalculadora() {
             this.display.value += valor;
         },
 
+        deletarUm() {
+            this.display.value = this.display.value.slice(0, -1);
+        },
+
         cliqueBotoes() {
             
             document.addEventListener("click", function(e) {
@@ -26,7 +30,19 @@ function criaCalculadora() {
                     console.log(valor)
                     this.btnParaDisplay(valor);
                 }
+
+                if(elemento.classList.contains('btn-clear')) {
+                    this.clearDisplay();
+                }
+
+                if(elemento.classList.contains('btn-del')) {
+                    this.deletarUm();
+                }
             }.bind(this));
+        },
+
+        clearDisplay() {
+            this.display.value = '';
         }
     };
 }
